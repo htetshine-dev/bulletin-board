@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class AdminTableSeeder extends Seeder
 {
@@ -15,10 +16,17 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'profile-photo' => Str::random(5).'png',
+            'type' =>  0,
+            'phone' => Str::random(11),
+            'address' => Str::random(255),
+            'date_of_birth' => Carbon::create('2000', '01', '01'),
+            'created_user_id' => 0,
+            'updated_user_id' => 0
         ]);
     }
 }
+

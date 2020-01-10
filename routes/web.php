@@ -16,3 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/user-login', 'User\UserController@index');
+Route::post('/user-login', 'User\UserController@check');
+
+Route::get('/post-lists', function(){
+  return view('user.post-lists');
+});
+
+Route::get('/create-post', function(){
+  return view('user.create-post');
+});

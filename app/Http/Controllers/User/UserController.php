@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -35,7 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -81,5 +83,22 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check(Request $request)
+    {
+        // $this->validate($request, [
+        //     'email' => 'required|email',
+        //     'password'=> 'required|min:8',
+        //     'remember' => ''
+        // ]);
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return "hello";
+        }else{
+            response()
+        }
     }
 }

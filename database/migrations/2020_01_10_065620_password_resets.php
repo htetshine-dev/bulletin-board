@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeAdminUsers extends Migration
+class PasswordResets extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class MakeAdminUsers extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+        Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('token');
+            $table->date('created_at');	
         });
     }
 
@@ -30,6 +27,6 @@ class MakeAdminUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('password_resets');
     }
 }
