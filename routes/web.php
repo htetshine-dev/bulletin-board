@@ -33,6 +33,7 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
   Route::post('/update-post/{id}', 'PostController@update');
 
   Route::get('/create-user', 'UserController@index');
+  Route::post('/create-user', 'UserController@store');
 
 });
 
