@@ -15,13 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user-login', 'User\UserController@index');
-Route::post('/user-login', 'User\UserController@check');
+Route::get('/user-login', 'User\UserController@login');
+//Route::post('/user-login', 'User\UserController@check');
 
-Route::get('/post-lists', function(){
-  return view('user.post-lists');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), function(){
+  Route::get('/post-lists', 'PostController@index');
+
+  Route::get('/create-post', 'PostController@create');
+  Route::post('/create-post', 'PostController@type');
+
+  Route::get('/update-post/{id}', 'PostController@edit');
+  Route::post('/update-post/{id}', 'PostController@update');
+
+  Route::get('/create-user', 'UserController@index');
+
 });
 
-Route::get('/create-post', function(){
-  return view('user.create-post');
-});
+

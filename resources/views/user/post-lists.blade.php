@@ -19,7 +19,9 @@
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-4">
-                <button type="button" class="btn btn-primary float-right">Add</button>
+                <a href="/user/create-post" class="href">
+                  <button type="button" class="btn btn-primary float-right">Add</button>
+                </a>
               </div>
               <div class="col-md-4">
                 <button type="button" class="btn btn-primary float-right">Upload</button>

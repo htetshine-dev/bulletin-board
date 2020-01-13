@@ -4,11 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Validator;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
-
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.create-user');
+        return view('user.post-lists');
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create-post');
     }
 
     /**
@@ -36,9 +36,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        return $request;
+        
+        return $request->all();
     }
 
     /**
@@ -60,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.update-post');
     }
 
     /**
@@ -70,9 +71,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        //
+        $title = $request->get('title');
+        $comment = $request->get('comment');
+        $status = $request->get('status');
+        if($status=="on"){
+            $status = 'checked';
+        }
+        return view('user.confirm-update-post', compact('title','comment','status'));
     }
 
     /**
@@ -86,8 +93,10 @@ class UserController extends Controller
         //
     }
 
-    public function login(){
-        return view('user.login');
+    public function type(PostRequest $request){
+        $title = $request->get('title');
+        $comment = $request->get('comment');
+        return view('user.confirm-create-post',compact('title','comment'));
     }
 
 }

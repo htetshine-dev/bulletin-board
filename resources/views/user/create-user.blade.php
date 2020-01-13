@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-1 card bg-light margintop-100">
-      <div class="card-header"><h5>Create Post</h5></div>
+      <div class="card-header"><h5>Create User</h5></div>
       <form method="post">
       @csrf
         <div class="form-group">
