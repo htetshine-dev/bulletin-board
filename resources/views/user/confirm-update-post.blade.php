@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-1 card bg-light margintop-100">
+    <div class="col-md-10 offset-1 card bg-light margintop-10">
       <div class="card-header"><h5>Update Post</h5></div>
       <form method="post">
       @csrf
@@ -62,5 +62,6 @@
       </form>
     </div>
   </div>
+</div>
 </div>
   @endsection

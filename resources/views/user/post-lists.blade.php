@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-1 card bg-light margintop-100">
+    <div class="col-md-10 offset-1 card bg-light margintop-10">
       <div class="card-header"><h5>Post Lists</h5>
         <div class="row margintop-10">
           <div class="col-md-3">
@@ -34,7 +34,7 @@
         </div>
       </div>
         <div class=" card-body">
-          <table class="table table-dark table-striped">
+          <table class="table table-light table-striped">
             <thead>
               <tr>
                 <th>Post Title</th>
@@ -50,7 +50,7 @@
                 <td>Doe</td>
                 <td>john@example.com</td>
                 <td>John</td>
-                <td><a href="#">Edit</a></td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
                 <td><a href="#">Delete</a></td>
               </tr>
               <tr>
@@ -58,7 +58,7 @@
                 <td>Moe</td>
                 <td>mary@example.com</td>
                 <td>John</td>
-                <td><a href="#">Edit</a></td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
                 <td><a href="#">Delete</a></td>
               </tr>
               <tr>
@@ -66,7 +66,31 @@
                 <td>Dooley</td>
                 <td>july@example.com</td>
                 <td>John</td>
-                <td><a href="#">Edit</a></td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
+                <td><a href="#">Delete</a></td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+                <td>John</td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
+                <td><a href="#">Delete</a></td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+                <td>John</td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
+                <td><a href="#">Delete</a></td>
+              </tr>
+              <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+                <td>John</td>
+                <td><a href="{{ __('/user/update-post/1') }}">Edit</a></td>
                 <td><a href="#">Delete</a></td>
               </tr>
             </tbody>
@@ -80,5 +104,6 @@
             </ul>
     </div>
   </div>
+</div>
 </div>
 @endsection

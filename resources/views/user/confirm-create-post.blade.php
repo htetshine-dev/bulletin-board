@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-1 card bg-light margintop-100">
+    <div class="col-md-10 offset-1 card bg-light margintop-10">
       <div class="card-header"><h5>Confirm Create Post</h5></div>
       <form method="post">
       @csrf
@@ -21,7 +21,7 @@
           <label for="comment">Comment:</label>
           <div class="row">
             <div class="col-md-12">
-              <textarea class="form-control @error('comment') is-invalid @enderror"  rows="5" id="comment" name="comment" required autocomplete="comment" disabled>{{ $comment }}</textarea>
+              <textarea class="form-control @error('comment') is-invalid @enderror"  rows="13" id="comment" name="comment" required autocomplete="comment" disabled>{{ $comment }}</textarea>
             </div>
           </div>   
         </div>
@@ -42,6 +42,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
   @endsection
 

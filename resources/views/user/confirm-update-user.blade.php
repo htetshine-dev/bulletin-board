@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('title','Create User')
+@section('title','Confirm Update User')
 
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-2 card bg-light margintop-10">
-      <div class="card-header"><h5>Create User Confirm</h5></div>
+      <div class="card-header"><h5>Confirm Update User</h5></div>
       <form method="post">
       @csrf
       <div class="row">
@@ -17,7 +17,7 @@
                 <label for="name">Name</label>
               </div>
               <div class="col-md-8">
-              <input type="name" class="form-control @error('comment') is-invalid @enderror" value="{{ $name }}"  id="name" name="name" required autocomplete="email" autofocus disabled>
+              <input type="name" class="form-control @error('comment') is-invalid @enderror" value="{{ $name }}" id="name" name="name" required autocomplete="name" autofocus disabled>
               </div>
               <div calss="col-md-1">
                   <span class="text-danger">*</span>
@@ -37,32 +37,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="password">Password</label>
-                </div>
-                <div class="col-md-8">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ $password }}" id="password" name="password" required autocomplete="password" autofocus disabled>
-                </div>
-                <div calss="col-md-1">
-                    <span class="text-danger">*</span>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="password_confirmation">Confirm Password</label>
-                </div>
-                <div class="col-md-8">
-                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{ $password_confirmation }}" id="password_confirmation" name="password_confirmation" required autocomplete="password_confirmation" autofocus disabled>
-                </div>
-                <div calss="col-md-1">
-                  <span class="text-danger">*</span>
-                </div>
-                </div>
-            </div>
+            
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
@@ -98,7 +73,7 @@
                   <label for="dateofbirth">Date Of Birth</label>
                 </div>
                 <div class="col-md-8">
-                <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror" vaule="{{ $dateofbirth }}" id="dateofbirth" name="dateofbirth" required autocomplete="dateofbirth" autofocus disabled>
+                <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror" value="{{ $dateofbirth }}" id="dateofbirth" name="dateofbirth" required autocomplete="dateofbirth" autofocus disabled>
                 </div>
                 <div calss="col-md-1">
                 </div>
@@ -116,7 +91,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row marginbottom-15">
               <div class="col-md-8"></div>
               <div class="col-md-3">
                 <div class="row">

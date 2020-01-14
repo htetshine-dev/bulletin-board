@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-1 card bg-light margintop-100">
+    <div class="col-md-10 offset-1 card bg-light margintop-10">
       <div class="card-header"><h5>Create Post</h5></div>
       <form method="post">
       @csrf
@@ -24,7 +24,7 @@
           <label for="comment">Comment:</label>
           <div class="row">
             <div class="col-md-11">
-              <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="comment" name="comment" required autocomplete="comment" autofocus>{{ old('comment') }}</textarea>
+              <textarea class="form-control @error('comment') is-invalid @enderror" rows="13" id="comment" name="comment" required autocomplete="comment" autofocus>{{ old('comment') }}</textarea>
             </div>
             <div class="col-md-1">
             <span class="text-danger">*</span>
@@ -49,5 +49,6 @@
       </form>
     </div>
   </div>
+</div>
 </div>
   @endsection

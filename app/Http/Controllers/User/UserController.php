@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Validator;
+use App\Http\Requests\UserRequest;
+//use App\Validator;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class UserController extends Controller
@@ -17,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.create-user');
+        return view('user.user-lists');
     }
 
     /**
@@ -27,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create-user');
     }
 
     /**
@@ -36,9 +38,28 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        return view('user.confirm-create-user');
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $password = $request->get('password');
+        $password_confirmation = $request->get('password_confirmation');
+        $type = $request->get('type');
+        $phone = $request->get('phone');
+        $dateofbirth = $request->get('dateofbirth');
+        $address = $request->get('address');
+        $profile = $request->get('img');
+        return view('user.confirm-create-user',compact(
+            'name',
+            'email',
+            'password',
+            'password_confirmation',
+            'type',
+            'phone',
+            'dateofbirth',
+            'address',
+            'profile')
+        );
     }
 
     /**
@@ -49,7 +70,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('user.user');
     }
 
     /**
@@ -60,7 +81,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.update-user');
     }
 
     /**
@@ -72,7 +93,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $type = $request->get('type');
+        $phone = $request->get('phone');
+        $dateofbirth = $request->get('dateofbirth');
+        $address = $request->get('address');
+        return view('user.confirm-update-user', compact('name','email','type','phone','dateofbirth','address'));
     }
 
     /**

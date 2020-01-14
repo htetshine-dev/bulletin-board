@@ -16,7 +16,7 @@
   @else
   <ul class="navbar-nav ml-left">
     <li class="nav-item">
-      <a class="nav-link" href="">Users</a>
+      <a class="nav-link" href="{{ __('/user/user-lists') }}">Users</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="">User</a>
