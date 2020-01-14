@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center marginbottom-180">
         <div class="col-md-8">
             <div class="card margintop-100">
                 <div class="card-header">{{ __('Login Form') }}</div>

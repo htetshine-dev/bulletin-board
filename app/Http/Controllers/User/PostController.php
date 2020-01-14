@@ -39,7 +39,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         
-        return $request->all();
+        return $request;
     }
 
     /**
@@ -73,13 +73,14 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-        $title = $request->get('title');
-        $comment = $request->get('comment');
-        $status = $request->get('status');
-        if($status=="on"){
-            $status = 'checked';
-        }
-        return view('user.confirm-update-post', compact('title','comment','status'));
+        // $title = $request->get('title');
+        // $comment = $request->get('comment');
+        // $status = $request->get('status');
+        // if($status=="on"){
+        //     $status = 'checked';
+        // }
+        // return view('user.confirm-update-post', compact('title','comment','status'));
+        return $request;
     }
 
     /**
@@ -93,10 +94,5 @@ class PostController extends Controller
         //
     }
 
-    public function type(PostRequest $request){
-        $title = $request->get('title');
-        $comment = $request->get('comment');
-        return view('user.confirm-create-post',compact('title','comment'));
-    }
 
 }

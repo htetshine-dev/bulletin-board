@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), function(){
     Route::get('/post-lists', 'PostController@index');
     Route::get('/create-post', 'PostController@create');
-    Route::post('/create-post', 'PostController@type');
+    Route::post('/create-post', 'PostController@store');
     Route::get('/update-post/{id}', 'PostController@edit');
     Route::post('/update-post/{id}', 'PostController@update');
 
@@ -36,6 +36,8 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
     Route::get('/update-user/{id}', 'UserController@edit');
     Route::post('/update-user/{id}', 'UserController@update');
     Route::get('/profile/{id}', 'UserController@show');
+    Route::get('/change-password/{id}', 'UserController@changePassword');
+    Route::post('/change-password/{id}', 'UserController@saveNewPassword');
 });
 
 

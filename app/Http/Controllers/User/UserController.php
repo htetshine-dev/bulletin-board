@@ -40,26 +40,27 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $name = $request->get('name');
-        $email = $request->get('email');
-        $password = $request->get('password');
-        $password_confirmation = $request->get('password_confirmation');
-        $type = $request->get('type');
-        $phone = $request->get('phone');
-        $dateofbirth = $request->get('dateofbirth');
-        $address = $request->get('address');
-        $profile = $request->get('img');
-        return view('user.confirm-create-user',compact(
-            'name',
-            'email',
-            'password',
-            'password_confirmation',
-            'type',
-            'phone',
-            'dateofbirth',
-            'address',
-            'profile')
-        );
+        // $name = $request->get('name');
+        // $email = $request->get('email');
+        // $password = $request->get('password');
+        // $password_confirmation = $request->get('password_confirmation');
+        // $type = $request->get('type');
+        // $phone = $request->get('phone');
+        // $dateofbirth = $request->get('dateofbirth');
+        // $address = $request->get('address');
+        // $profile = $request->get('img');
+        // return view('user.confirm-create-user',compact(
+        //     'name',
+        //     'email',
+        //     'password',
+        //     'password_confirmation',
+        //     'type',
+        //     'phone',
+        //     'dateofbirth',
+        //     'address',
+        //     'profile')
+        // );
+        return $request;
     }
 
     /**
@@ -93,13 +94,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $name = $request->get('name');
-        $email = $request->get('email');
-        $type = $request->get('type');
-        $phone = $request->get('phone');
-        $dateofbirth = $request->get('dateofbirth');
-        $address = $request->get('address');
-        return view('user.confirm-update-user', compact('name','email','type','phone','dateofbirth','address'));
+        // $name = $request->get('name');
+        // $email = $request->get('email');
+        // $type = $request->get('type');
+        // $phone = $request->get('phone');
+        // $dateofbirth = $request->get('dateofbirth');
+        // $address = $request->get('address');
+        // return view('user.confirm-update-user', compact('name','email','type','phone','dateofbirth','address'));
+        return $request;
     }
 
     /**
@@ -117,4 +119,11 @@ class UserController extends Controller
         return view('user.login');
     }
 
+    public function changePassword($id){
+        return view('user.change-password');
+    }
+
+    public function saveNewPassword(Request $request, $id){
+        return $request;
+    }
 }

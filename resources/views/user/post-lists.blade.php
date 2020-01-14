@@ -6,34 +6,34 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-1 card bg-light margintop-10">
-      <div class="card-header"><h5>Post Lists</h5>
-        <div class="row margintop-10">
-          <div class="col-md-3">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">Go</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-4">
-                <a href="/user/create-post" class="href">
-                  <button type="button" class="btn btn-primary float-right">Add</button>
-                </a>
-              </div>
-              <div class="col-md-4">
-                <button type="button" class="btn btn-primary float-right">Upload</button>
-              </div>
-              <div class="col-md-4">
-                <button type="button" class="btn btn-primary float-right">Download</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="card-header"><h5>Post Lists</h5></div>
         <div class=" card-body">
+          <div class="row margintop-10">
+            <div class="col-md-3">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">Go</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-4">
+                  <a href="/user/create-post" class="href">
+                    <button type="button" class="btn btn-primary float-right">Add</button>
+                  </a>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-primary float-right">Upload</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-primary float-right">Download</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
           <table class="table table-light table-striped">
             <thead>
               <tr>
