@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Csv;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
-use App\Http\Requests\PostUpdateRequest;
-use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class CsvController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('user.post-lists');
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('user.create-post');
+        return view('user.csv.upload-csv');
     }
 
     /**
@@ -36,9 +33,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        
         return $request;
     }
 
@@ -61,7 +57,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('user.update-post');
+        //
     }
 
     /**
@@ -71,16 +67,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        // $title = $request->get('title');
-        // $comment = $request->get('comment');
-        // $status = $request->get('status');
-        // if($status=="on"){
-        //     $status = 'checked';
-        // }
-        // return view('user.confirm-update-post', compact('title','comment','status'));
-        return $request;
+        //
     }
 
     /**
@@ -93,6 +82,4 @@ class PostController extends Controller
     {
         //
     }
-
-
 }

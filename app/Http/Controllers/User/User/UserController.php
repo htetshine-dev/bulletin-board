@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-//use App\Validator;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class UserController extends Controller
 {
@@ -19,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.user-lists');
+        return view('user.user.user-lists');
     }
 
     /**
@@ -29,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create-user');
+        return view('user.user.create-user');
     }
 
     /**
@@ -40,26 +37,6 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // $name = $request->get('name');
-        // $email = $request->get('email');
-        // $password = $request->get('password');
-        // $password_confirmation = $request->get('password_confirmation');
-        // $type = $request->get('type');
-        // $phone = $request->get('phone');
-        // $dateofbirth = $request->get('dateofbirth');
-        // $address = $request->get('address');
-        // $profile = $request->get('img');
-        // return view('user.confirm-create-user',compact(
-        //     'name',
-        //     'email',
-        //     'password',
-        //     'password_confirmation',
-        //     'type',
-        //     'phone',
-        //     'dateofbirth',
-        //     'address',
-        //     'profile')
-        // );
         return $request;
     }
 
@@ -71,7 +48,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user.user');
+        return view('user.user.user');
     }
 
     /**
@@ -82,7 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.update-user');
+        return view('user.user.update-user');
     }
 
     /**
@@ -94,13 +71,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $name = $request->get('name');
-        // $email = $request->get('email');
-        // $type = $request->get('type');
-        // $phone = $request->get('phone');
-        // $dateofbirth = $request->get('dateofbirth');
-        // $address = $request->get('address');
-        // return view('user.confirm-update-user', compact('name','email','type','phone','dateofbirth','address'));
         return $request;
     }
 
@@ -116,11 +86,11 @@ class UserController extends Controller
     }
 
     public function login(){
-        return view('user.login');
+        return view('user.user.login');
     }
 
     public function changePassword($id){
-        return view('user.change-password');
+        return view('user.user.change-password');
     }
 
     public function saveNewPassword(Request $request, $id){

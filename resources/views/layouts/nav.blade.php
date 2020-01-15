@@ -16,13 +16,13 @@
   @else
   <ul class="navbar-nav ml-left">
     <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/user-lists') }}">Users</a>
+      <a class="nav-link" href="{{ __('/user/user/user-lists') }}">Users</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/profile/1') }}">User</a>
+      <a class="nav-link" href="{{ __('/user/user/profile/1') }}">User</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/post-lists') }}">Posts</a>
+      <a class="nav-link" href="{{ __('/user/post/post-lists') }}">Posts</a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">

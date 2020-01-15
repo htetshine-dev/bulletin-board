@@ -19,22 +19,22 @@
               <span class="text-danger">*</span>
             </div>
           </div>
-       </div>
-       <div class="form-group">
+        </div>
+        <div class="form-group">
           <label for="comment">Comment:</label>
           <div class="row">
             <div class="col-md-11">
               <textarea class="form-control @error('comment') is-invalid @enderror" rows="13" id="comment" name="comment" required autocomplete="comment" autofocus>{{ old('comment') }}</textarea>
             </div>
             <div class="col-md-1">
-            <span class="text-danger">*</span>
+              <span class="text-danger">*</span>
             </div>
           </div>   
         </div>
         <div class="form-group">
           <div class="row">
             <div class="col-md-2">
-             Status:
+              Status:
             </div>
             <div class="col-md-10">
               <label class="custom-control custom-checkbox">
@@ -58,6 +58,7 @@
               </div>
             </div>
             <div class="col-md-1"></div>
+          </div>
         </div>
       </form>
     </div>
@@ -69,53 +70,50 @@
 <div class="modal fade" id="confirmUpdatePost">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Confirm Update Post</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-
       <form method="post">
       @csrf
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="title">Title:</label>
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="name" class="form-control @error('title') is-invalid @enderror"  placeholder="Enter Title" id="name" name="title" required autocomplete="title" autofocus disabled>
-                  </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="name" class="form-control @error('title') is-invalid @enderror"  placeholder="Enter Title" id="name" name="title" required autocomplete="title" autofocus disabled>
                 </div>
-             </div>
-             <div class="form-group">
-                <label for="comment">Comment:</label>
-                <div class="row">
-                  <div class="col-md-12">
-                    <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="comment" name="comment" required autocomplete="comment" autofocus disabled></textarea>
-                  </div>
-                </div>   
               </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-2">
-                   Status:
-                  </div>
-                  <div class="col-md-10">
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="status" >
-                      <span class="custom-control-indicator"></span>
-                    </label>
-                  </div>
+            </div>
+            <div class="form-group">
+              <label for="comment">Comment:</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="comment" name="comment" required autocomplete="comment" autofocus disabled></textarea>
+                </div>
+              </div>   
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-2">
+                  Status:
+                </div>
+                <div class="col-md-10">
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="status" >
+                    <span class="custom-control-indicator"></span>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Modal footer -->
+      </div>
+      <!-- Modal footer -->
         <div class="modal-footer">
           <div class="row">
             <div class="col-md-6">
@@ -126,8 +124,8 @@
             </div>
           </div>
         </div>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
-  @endsection
+</div>
+ @endsection

@@ -8,75 +8,75 @@
     <div class="col-md-8 offset-2 card bg-light margintop-10">
       <div class="card-header"><h5>Create User</h5></div>
       <form method="post">
-        @csrf
-        <div class="form-group">
-          <div class="row margintop-10">
-            <div class="col-md-3">
-              <label for="name">Name</label>
-            </div>
-            <div class="col-md-8">
-              <input type="name" class="form-control @error('name') is-invalid @enderror"  id="name" name="name" required autocomplete="name" autofocus>
-            </div>
-            <div calss="col-md-1">
-              <span class="text-danger">*</span>
-            </div>
+      @csrf
+      <div class="form-group">
+        <div class="row margintop-10">
+          <div class="col-md-3">
+            <label for="name">Name</label>
+          </div>
+          <div class="col-md-8">
+            <input type="name" class="form-control @error('name') is-invalid @enderror"  id="name" name="name" required autocomplete="name" autofocus>
+          </div>
+          <div calss="col-md-1">
+            <span class="text-danger">*</span>
           </div>
         </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="email">Email Address</label>
+          </div>
+          <div class="col-md-8">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email" autofocus>
+          </div>
+          <div calss="col-md-1">
+            <span class="text-danger">*</span>
+           </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="password">Password</label>
+          </div>
+          <div class="col-md-8">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autofocus>
+          </div>
+          <div calss="col-md-1">
+            <span class="text-danger">*</span>
+          </div>
+        </div>
+       </div>
        <div class="form-group">
           <div class="row">
-            <div class="col-md-3">
-              <label for="email">Email Address</label>
-            </div>
-            <div class="col-md-8">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email" autofocus>
-            </div>
-            <div calss="col-md-1">
-                <span class="text-danger">*</span>
-            </div>
+           <div class="col-md-3">
+             <label for="password_confirmation">Confirm Password</label>
+           </div>
+           <div class="col-md-8">
+             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required autofocus>
+           </div>
+           <div calss="col-md-1">
+             <span class="text-danger">*</span>
+           </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <label for="password">Password</label>
-            </div>
-            <div class="col-md-8">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autofocus>
-            </div>
-            <div calss="col-md-1">
-                <span class="text-danger">*</span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-3">
-              <label for="password_confirmation">Confirm Password</label>
-            </div>
-            <div class="col-md-8">
-              <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required autofocus>
-            </div>
-            <div calss="col-md-1">
-              <span class="text-danger">*</span>
-            </div>
-            </div>
-        </div>
-        <div class="form-group">
+       </div>
+       <div class="form-group">
           <div class="row">
             <div class="col-md-3">
               <label for="confirmpassword">Type</label>
             </div>
-            <div class="col-md-8">
+           <div class="col-md-8">
               <select class="form-control" id="type" name="type">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
               </select>
-            </div>
-            <div calss="col-md-1">
-              <span class="text-danger">*</span>
-            </div>
+           </div>
+           <div calss="col-md-1">
+             <span class="text-danger">*</span>
+           </div>
           </div>
         </div>
         <div class="form-group">
@@ -99,9 +99,9 @@
               <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"id="dateofbirth" name="dateofbirth" required autofocus>
             </div>
             <div calss="col-md-1">
-            </div>
           </div>
         </div>
+       </div>
         <div class="form-group">
           <div class="row">
             <div class="col-md-3">
@@ -110,12 +110,11 @@
             <div class="col-md-8">
               <textarea class="form-control @error('address') is-invalid @enderror" rows="5" id="address" name="address" required autofocus></textarea>
             </div>
-            <div calss="col-md-1">
-            </div>
+            <div calss="col-md-1"></div>
           </div>
         </div>
 
-        <div class="form-group">
+       <div class="form-group">
           <div class="row">
             <div class="col-md-3 margintop-10">
               <label for="profile">Profile</label>
@@ -145,9 +144,9 @@
                               reader.readAsDataURL(this.files[0]);
                             });
                           </script>
-                      </div>
+                        </div>
                       <div class="input-group-append">
-                        <span class="text-danger">*</span>
+                       <span class="text-danger">*</span>
                       </div>
                     </div>  
                   </div>
@@ -156,9 +155,9 @@
                   </div>
                 <div> 
               </div>
-            <div calss="col-md-1"></div>
+              <div calss="col-md-1"></div>
+            </div>
           </div>
-        </div>
         <div class="marginbottom-15">
           <div class="row">
             <div class="col-md-9"></div>
@@ -184,73 +183,68 @@
 <div class="modal fade" id="confirmCreateUser">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-    
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Confirm Create User</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <form method="post" action="/user/create-user">
-        @csrf
+      @csrf
       <!-- Modal body -->
       <div class="modal-body">
-        <div class="row">
+         <div class="row">
           <div class="col-md-9">
-            <div class="form-group">
-              <div class="row margintop-10">
-                <div class="col-md-3">
-                  <label for="name">Name</label>
+              <div class="form-group">
+                <div class="row margintop-10">
+                  <div class="col-md-3">
+                    <label for="name">Name</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="name" class="form-control @error('comment') is-invalid @enderror"  id="name" name="name" required autocomplete="email" autofocus disabled>
+                  </div>
+                  <div calss="col-md-1"></div>
                 </div>
-                <div class="col-md-8">
-                <input type="name" class="form-control @error('comment') is-invalid @enderror"  id="name" name="name" required autocomplete="email" autofocus disabled>
-                </div>
-                <div calss="col-md-1"></div>
               </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="email">Email Address</label>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label for="email">Email Address</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror"  id="email" name="email" required autocomplete="email" autofocus disabled>
+                  </div>
+                  <div calss="col-md-1"></div>
                 </div>
-                <div class="col-md-8">
-                <input type="email" class="form-control @error('email') is-invalid @enderror"  id="email" name="email" required autocomplete="email" autofocus disabled>
-                </div>
-                <div calss="col-md-1"></div>
               </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="password">Password</label>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-3">
+                     <label for="password">Password</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror"  id="password" name="password" required autocomplete="password" autofocus disabled>
+                  </div>
+                  <div calss="col-md-1"></div>
                 </div>
-                <div class="col-md-8">
-                <input type="password" class="form-control @error('password') is-invalid @enderror"  id="password" name="password" required autocomplete="password" autofocus disabled>
-                </div>
-                <div calss="col-md-1"></div>
               </div>
-            </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="password_confirmation">Confirm Password</label>
                 </div>
                 <div class="col-md-8">
-                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"  id="password_confirmation" name="password_confirmation" required autocomplete="password_confirmation" autofocus disabled>
+                  <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"  id="password_confirmation" name="password_confirmation" required autocomplete="password_confirmation" autofocus disabled>
                 </div>
                 <div calss="col-md-1"></div>
-                </div>
+              </div>
             </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="type">Type</label>
                 </div>
                 <div class="col-md-8">
-                <select class="form-control"  id="type" name="type" disabled>
+                  <select class="form-control"  id="type" name="type" disabled>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -260,45 +254,39 @@
                 <div calss="col-md-1"></div>
               </div>
             </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="phone">Phone</label>
                 </div>
                 <div class="col-md-8">
-                <input type="text" class="form-control @error('phone') is-invalid @enderror"  id="phone" name="phone" required autocomplete="phone" autofocus disabled>
+                  <input type="text" class="form-control @error('phone') is-invalid @enderror"  id="phone" name="phone" required autocomplete="phone" autofocus disabled>
                 </div>
                 <div calss="col-md-1"></div>
               </div>
             </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="dateofbirth">Date Of Birth</label>
                 </div>
                 <div class="col-md-8">
-                <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"  id="dateofbirth" name="dateofbirth" required autocomplete="dateofbirth" autofocus disabled>
+                  <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"  id="dateofbirth" name="dateofbirth" required autocomplete="dateofbirth" autofocus disabled>
                 </div>
-                <div calss="col-md-1">
-                </div>
+                <div calss="col-md-1"></div>
               </div>
             </div>
-
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="address">Address</label>
                 </div>
                 <div class="col-md-8">
-                <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="address" name="address" required autocomplete="address" autofocus disabled></textarea>
+                  <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="address" name="address" required autocomplete="address" autofocus disabled></textarea>
                 </div>
-                <div calss="col-md-1">
-                </div>
+                <div calss="col-md-1"></div>
               </div>
             </div>
-
           </div>
           <div class="col-md-3">
             <div class="form-group margintop-10">
@@ -307,7 +295,6 @@
           </div>
         </div>
       </div>
-      
       <!-- Modal footer -->
       <div class="modal-footer">
         <div class="row">
@@ -319,8 +306,8 @@
           </div>
         </div>
       </div>
-      </form>
-    </div>
+    </form>
   </div>
 </div>
-  @endsection
+</div>
+ @endsection

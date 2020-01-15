@@ -1,6 +1,11 @@
 .margintop-100{
   margin-top: 100px;
 }
+
+.margintop-50{
+  margin-top: 50px;
+}
+
 .card-header{
   background-color: rgba(0,0,0,0) !important;
 }
@@ -14,6 +19,9 @@
 
 .marginbottom-60{
   margin-bottom: 60px !important;
+}
+.marginbottom-130{
+  margin-bottom: 130px !important;
 }
 
 .marginbottom-15{
