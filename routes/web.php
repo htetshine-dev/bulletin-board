@@ -15,8 +15,7 @@ Route::get('/', function () {
    return view('welcome');
 });
 
-Route::get('/user-login', 'User\UserController@login');
-//Route::post('/user-login', 'User\UserController@check');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -37,8 +36,10 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
    //Posts
    Route::group(array('prefix'=>'post','namespace'=>'post','middleware'=>'auth'), function(){
       Route::get('/post-lists', 'PostController@index');
+      
       Route::get('/create-post', 'PostController@create');
       Route::post('/create-post', 'PostController@store');
+      
       Route::get('/update-post/{id}', 'PostController@edit');
       Route::post('/update-post/{id}', 'PostController@update');
    });

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\Post\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
+use App\User;
 
 class PostController extends Controller
 {
@@ -36,9 +38,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    
     public function store(PostRequest $request)
     {
-        return $request;
+        $title = $request->get('title');
+        $comment = $request->get('comment');
+        Post::firstOrCreate(['title'=>$title,'description'=>$comment]);
+
+        return redirect('user/post/create-post',compact('title','comment'));
     }
 
     /**
