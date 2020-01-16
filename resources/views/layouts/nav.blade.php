@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
   <a class="navbar-brand" href="{{ url('/') }}">
     SCM Bulletin Board
   </a>

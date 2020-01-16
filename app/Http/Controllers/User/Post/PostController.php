@@ -5,7 +5,8 @@ namespace App\Http\Controllers\User\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Post\PostRequest;
-use App\Http\Requests\PostUpdateRequest;
+use App\Http\Requests\Post\PostUpdateRequest;
+use App\Http\Requests\Post\SearchPostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
@@ -19,7 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('user.post.post-lists');
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        return view('user.post.post-lists', compact('posts'));
     }
 
     /**
@@ -44,9 +46,17 @@ class PostController extends Controller
     {
         $title = $request->get('title');
         $comment = $request->get('comment');
-        Post::firstOrCreate(['title'=>$title,'description'=>$comment]);
-
-        return redirect('user/post/create-post',compact('title','comment'));
+        $createdUserId = Auth::user()->id;
+        $currentDate = date('Y-m-d H:i:s');
+        Post::insert([
+            'title'=>$title, 
+            'description'=>$comment, 
+            'created_user_id'=>$createdUserId,
+            'updated_user_id'=>$createdUserId,
+            'created_at'=>$currentDate,
+            'updated_at'=>$currentDate
+            ]);
+        return redirect('/user/post/create-post')->with('status', $title.' is created successfully.');
     }
 
     /**
@@ -68,7 +78,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('user.post.update-post');
+        $posts = Post::where('id', $id)->get();
+        return view('user.post.update-post', compact('posts'));
     }
 
     /**
@@ -80,7 +91,24 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-        return $request;
+        $title = $request->get('title');
+        $comment = $request->get('comment');
+        $status = $request->get('status');
+        if($status=='on'){
+            $status=1;
+        }else{
+            $status=2;
+        }
+        $updatedUserId = Auth::user()->id;
+        $currentDate = date('Y-m-d H:i:s');
+        Post::where('id', $id)->update([
+            'title'=>$title,
+            'description'=>$comment,
+            'status'=>$status,
+            'updated_user_id'=>$updatedUserId,
+            'updated_at'=>$currentDate
+        ]);
+        return redirect('/user/post/update-post/'.$id)->with('status', $title.' is updated successfully.');
     }
 
     /**
@@ -91,6 +119,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::where('id', $id)->delete();
+        return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
+    }
+
+    public function search(SearchPostRequest $request){
+        $title = $request->get('title');
+        $posts = Post::where('title', 'like', '%'.$title.'%')->paginate(10);
+        return view('user.post.post-lists', compact('posts'));
     }
 }

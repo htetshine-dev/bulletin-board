@@ -42,6 +42,10 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
       
       Route::get('/update-post/{id}', 'PostController@edit');
       Route::post('/update-post/{id}', 'PostController@update');
+
+      Route::get('/delete-post/{id}', 'PostController@destroy');
+
+      Route::post('/search', 'PostController@search');
    });
 
    //Csv

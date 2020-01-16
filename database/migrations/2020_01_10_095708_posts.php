@@ -22,9 +22,10 @@ class Posts extends Migration
             $table->foreign('created_user_id')->references('id')->on('users');
             $table->integer('updated_user_id')->unsigned();
             $table->foreign('updated_user_id')->references('id')->on('users');
-            $table->integer('deleted_user_id');
-            $table->timestamps();
-            $table->date('deleted_at');	
+            $table->integer('deleted_user_id')->nullable();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
+            $table->date('deleted_at')->nullable();	
         });
     }
 
