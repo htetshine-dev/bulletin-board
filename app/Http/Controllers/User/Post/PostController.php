@@ -119,13 +119,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::where('id', $id)->delete();
+        Post::find($id)->delete();
         return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
     }
 
     public function search(SearchPostRequest $request){
         $title = $request->get('title');
-        $posts = Post::where('title', 'like', '%'.$title.'%')->paginate(10);
+        $posts = Post::where('title', 'like', '%'.$title.'%')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
         return view('user.post.post-lists', compact('posts'));
     }
 }

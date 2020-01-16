@@ -75,8 +75,6 @@
   </div>
 </div>
 </div>
-@endsection
-
 <!-- Modal -->
 <div class="modal fade" id="confirmDeletePost" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -89,7 +87,7 @@
       </div>
       <div class="modal-body">
         <center>
-        Are you sure you want to delete?
+        Are you sure you want to delete?{{ $post->id }}
         </center>
       </div>
       <div class="modal-footer">
@@ -99,3 +97,5 @@
     </div>
   </div>
 </div>
+@endsection
+
