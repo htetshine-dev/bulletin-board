@@ -35,6 +35,7 @@
       $('input:checkbox').attr('checked', status)
     })
 
+    
   </script>
 </body>
 </html>

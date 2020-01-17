@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->where('deleted_at',null)->paginate(10);
         return view('user.post.post-lists', compact('posts'));
     }
 
@@ -48,6 +48,8 @@ class PostController extends Controller
         $comment = $request->get('comment');
         $createdUserId = Auth::user()->id;
         $currentDate = date('Y-m-d H:i:s');
+        $dbtitle = Post::get('title');
+        
         Post::insert([
             'title'=>$title, 
             'description'=>$comment, 
@@ -67,7 +69,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $posts = Post::where('id',$id)->get();
+        return view('user.post.view-post', compact('posts'));
     }
 
     /**
@@ -119,13 +122,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::find($id)->delete();
+        $deletedUser = Auth::user()->id;
+        Post::find($id)->delete(['deleted_user_id'=>$deletedUser]);
         return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
     }
 
     public function search(SearchPostRequest $request){
         $title = $request->get('title');
         $posts = Post::where('title', 'like', '%'.$title.'%')
+        ->where('deleted_at',null)
         ->orderBy('created_at', 'desc')
         ->paginate(10);
         return view('user.post.post-lists', compact('posts'));

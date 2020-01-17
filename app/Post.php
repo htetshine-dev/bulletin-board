@@ -23,6 +23,7 @@ class Post extends Model
     protected $date = [
         'deleted_at'
     ];
+
     protected $hidden = [
         'created_at',
         'updated_at'
