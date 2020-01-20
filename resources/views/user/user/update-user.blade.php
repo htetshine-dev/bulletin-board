@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-2 card bg-light margintop-10">
+    <div class="col-md-8 offset-2 card bg-light margintop-10 marginbottom-60">
       <div class="card-header"><h5>Update User</h5></div>
       <form method="post">
       @csrf
@@ -213,7 +213,7 @@
           </div>
         </div>
         <!-- Modal footer -->
-        <div class="modal-footer">
+        <div class="modal-footer marginbottom-60">
           <div class="row">
             <div class="col-md-6">
               <button type="submit" class="btn btn-primary float-right" >Create</button>

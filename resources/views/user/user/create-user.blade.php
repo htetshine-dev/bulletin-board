@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row marginbottom-60">
     <div class="col-md-8 offset-2 card bg-light margintop-10">
       <div class="card-header"><h5>Create User</h5></div>
       <form method="post">

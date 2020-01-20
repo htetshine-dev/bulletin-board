@@ -84,7 +84,6 @@
     </div>
   </div>
 </div>
-
 <!-- Post Update Confirm Modal -->
 <div class="modal fade" id="confirmUpdatePost">
   <div class="modal-dialog modal-lg">

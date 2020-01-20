@@ -39,8 +39,8 @@
           <div class="row">
             <div class="col-md-11">
               <textarea class="form-control" placeholder="Enter Comment" rows="13"
-              id="comment" name="comment" required autocomplete="comment" autofocus>
-              </textarea>
+              id="comment" name="comment" required autocomplete="comment" 
+              autofocus></textarea>
               {{-- Error Message For Comment --}}
               @error('comment')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -101,7 +101,7 @@
             <label for="comment">Comment:</label>
             <div class="row">
               <div class="col-md-12">
-                <textarea class="form-control"  rows="13" id="comment" name="comment"
+                <textarea class="form-control" rows="13" id="comment" name="comment"
                 required disabled></textarea>
               </div>
             </div>   

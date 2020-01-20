@@ -34,7 +34,28 @@
       $('textarea:eq(1)').val(comment)
       $('input:checkbox').attr('checked', status)
     })
+    function excelDownload(){
+      var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#tableWrap').html())
+      location.href = url
+      return false
+    }
+    $('#viewModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+      var title = document.getElementById('title').value
+      var comment = document.getElementById('comment').value
+      
+      var x = document.getElementById("myTable").rows[1].cells;
+       x[0].innerHTML = title;
+      $('input:text:eq(1)').val(title)
+      $('textarea').val(comment)
+    })
 
+    // $('#confirmDeletePost').on('shown.bs.modal', function (event) {
+    //   $('#myInput').trigger('focus')
+    //   var postid = document.getElementById('postid').value;
+    //   console.log(postid);
+    //   //modal.find('mody-body #postid')val(postid);
+    // })
     
   </script>
 </body>

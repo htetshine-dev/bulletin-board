@@ -58,7 +58,8 @@ class PostController extends Controller
             'created_at'=>$currentDate,
             'updated_at'=>$currentDate
             ]);
-        return redirect('/user/post/create-post')->with('status', $title.' is created successfully.');
+        define('SUCCESS',' is created successfully.');
+        return redirect('/user/post/create-post')->with('status', $title.SUCCESS);
     }
 
     /**
@@ -69,8 +70,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts = Post::where('id',$id)->get();
-        return view('user.post.view-post', compact('posts'));
+        $posts= Post::where('id',$id)->get();
+        return view('user.post.post-lists', compact('posts'));
     }
 
     /**
@@ -111,7 +112,8 @@ class PostController extends Controller
             'updated_user_id'=>$updatedUserId,
             'updated_at'=>$currentDate
         ]);
-        return redirect('/user/post/update-post/'.$id)->with('status', $title.' is updated successfully.');
+        define('SUCCESS',' is updated successfully.');
+        return redirect('/user/post/update-post/'.$id)->with('status', $title.SUCCESS);
     }
 
     /**
@@ -120,11 +122,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $deletedUser = Auth::user()->id;
-        Post::find($id)->delete(['deleted_user_id'=>$deletedUser]);
-        return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
+        // $deletedUser = Auth::user()->id;
+        // Post::find($id)->delete(['deleted_user_id'=>$deletedUser]);
+        // return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
+        return $request;
     }
 
     public function search(SearchPostRequest $request){

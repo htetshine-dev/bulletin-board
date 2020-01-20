@@ -41,7 +41,8 @@
               </div>
               <div class="col-md-4">
                 <a href="#" class="href">
-                  <button type="button" class="btn btn-primary float-right">
+                  <button type="button" onclick="excelDownload()" 
+                  class="btn btn-primary float-right">
                   Download</button> 
                 </a>
               </div>
@@ -55,7 +56,8 @@
             <strong>{{ session('status') }}</strong>
           </div>
         @endif 
-        <table class="table table-hover" id="htmltable">
+        <div id="tableWrap" class="table-responsive-sm">
+        <table class="table table-hover" id="myTable">
           {{-- Table Header --}}
           <thead>
             <tr>
@@ -74,10 +76,11 @@
               @foreach($posts as $post)
                 <tr>
                   {{-- Column for Title --}}
-                  <td>
+                  <td id="title">
                     {{-- Link For View Modal Box --}}
                     {{-- <form method="post" action="" id="view"> --}}
-                    <a href="#" data-toggle="modal" data-target="#viewModal">
+                    <a href="{{ __('/user/post/update-post/') }}{{ $post->id }}" 
+                      data-toggle="modal" data-target="#viewModal">
                     {{ $post->title }}</a>
                     {{-- </form> --}}
                   </td>
@@ -88,18 +91,15 @@
                   {{-- Column for Posted Date --}}
                   <td>{{ $post->created_at }}</td>
                   {{-- Column for Edit Post --}}
-                  <td><a href="{{ __('/user/post/update-post/') }}{{ $post->id }}">
+                  <td ><a href="{{ __('/user/post/update-post/') }}{{ $post->id }}">
                   Edit</a></td>
                   {{-- Column for Delete Post --}}
                   <td>
-                    <form mehtod="post" action="{{ __('/user/post/delete-post/') }}
-                    {{ $post->id }}" id="confirm">
-                      {{-- <a href="#" data-toggle="modal" 
-                      data-target="#confirmDeletePost">Delete</a></td> --}}
-                      <button type="button" class="btn btn-primary float-right" 
-                      data-toggle="modal" data-target="#confirmDeletePost">
-                      Delete</button>
-                    </form>
+                    {{ $post->id }}
+                    <button type="button" class="btn btn-primary float-right" 
+                    data-toggle="modal" data-target="#confirmDeletePost" data-postid="{{ $post->id }}">
+                    Delete</button>
+                  
                   </td>
                 </tr>
               @endforeach
@@ -111,6 +111,7 @@
             @endif  
           </tbody>
         </table>
+        </div>
           {{-- Pagination for list and search of posts --}}
           <ul class="pagination  justify-content-center">
             {{ $posts->links() }}
@@ -134,8 +135,17 @@ aria-hidden="true">
       </div>
       {{-- Modal Body --}}
       <div class="modal-body">
+        @foreach($posts as $post)
+        <form mehtod="post" 
+        action="{{ __('/user/post/delete-post/') }}{{ $post->id }}" id="confirm">
+        {{method_field('delete')}}
+        @csrf
+        {{-- <a href="#" data-toggle="modal" 
+        data-target="#confirmDeletePost">Delete</a></td> --}}
+        <input type="hidden" name="postid" id="postid" value="{{ $post->id }}">
+        </form>
         <center>
-          Are you sure you want to delete?
+          Are you sure you want to delete? {{ $post->id }}
         </center>
       </div>
       {{-- Modal Footer --}}
@@ -157,7 +167,7 @@ aria-hidden="true">
     <div class="modal-content">
       {{-- Modal Header --}}
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
         <button type="button" class="close" data-dismiss="modal" 
         aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -165,7 +175,25 @@ aria-hidden="true">
       </div>
       {{-- Modal Body --}}
       <div class="modal-body">  
-        .....
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" class="form-control" value="" id="title" name="title" 
+              required disabled>
+            </div>
+          </div>
+        </div>
+        {{-- Post Comment --}}
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <div class="row">
+            <div class="col-md-12">
+              <textarea class="form-control"  rows="13" id="comment" name="comment"
+              required disabled></textarea>
+            </div>
+          </div>   
+        </div>   
       </div>
       {{-- Modal Footer --}}
       <div class="modal-footer">
