@@ -27,6 +27,9 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
        Route::get('/profile/{id}', 'UserController@show');
        Route::get('/change-password/{id}', 'UserController@changePassword');
        Route::post('/change-password/{id}', 'UserController@saveNewPassword');
+       Route::get('/delete-user/{id}', 'UserController@destroy');
+       Route::get('/search', 'UserController@index');
+       Route::post('/search', 'UserController@search');
     });
     // End Users
     // Start Posts
@@ -38,6 +41,7 @@ Route::group(array('prefix'=>'user','namespace'=>'user','middleware'=>'auth'), f
        Route::get('/update-post/{id}', 'PostController@edit');
        Route::post('/update-post/{id}', 'PostController@update');
        Route::get('/delete-post/{id}', 'PostController@destroy');
+       Route::post('/search', 'PostController@index');
        Route::post('/search', 'PostController@search');
     });
     // End Posts

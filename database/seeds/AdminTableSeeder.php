@@ -20,7 +20,7 @@ class AdminTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
-            'profile-photo' => Str::random(5).'.png',
+            'profile_photo' => Str::random(5).'.png',
             'type' =>  0,
             'phone' => Str::random(11),
             'address' => Str::random(255),

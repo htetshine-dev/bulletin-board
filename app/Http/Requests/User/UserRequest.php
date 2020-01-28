@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,9 +27,10 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:8',
-            'password_confirmation' => 'required_with:password|same:password|min:8',
+            'password_confirmation' => 'required|required_with:password|same:password|min:8',
             'type' => 'required',
-            'name' => 'required'
+            'img' => 'required',
+            'dateofbirth' => 'before:today'
         ];
     }
 }

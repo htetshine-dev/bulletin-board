@@ -4,11 +4,27 @@ namespace App\Http\Controllers\User\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\User\UserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Contracts\Services\User\UserServiceInterface;
 
 class UserController extends Controller
 {
+    private $userInterface;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(UserServiceInterface $userInterface)
+    {
+  
+      $this->middleware('auth');
+      $this->userInterface = $userInterface;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +32,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.user.user-lists');
+        
+        $users = $this->userInterface->getUserList();
+        return $users;    
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +43,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.user.create-user');
+        $users = $this->userInterface->userCreateView();
+        return $users;
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,9 +54,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        return $request;
+        $createUser = $this->userInterface->userStore($request);
+        return $createUser;        
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,9 +65,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user.user.user');
+        $users = $this->userInterface->userShow($id);
+        return $users;
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,9 +76,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.user.update-user');
+        $users = $this->userInterface->userEdit($id);
+        return $users;
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -69,11 +86,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        return $request;
+        $users = $this->userInterface->userUpdate($request, $id);
+        return $users;
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -82,18 +99,25 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = $this->userInterface->userDelete($id);
+        return $users;
     }
-
-    public function login(){
-        return view('user.user.login');
+    //change password view
+    public function changePassword($id)
+    {
+        $users = $this->userInterface->userChangePassword($id);
+        return $users;
     }
-
-    public function changePassword($id){
-        return view('user.user.change-password');
+    //cahnge password action
+    public function saveNewPassword(ChangePasswordRequest $request, $id)
+    {
+        $users = $this->userInterface->userSaveNewPassword($request, $id);
+        return $users;
     }
-
-    public function saveNewPassword(Request $request, $id){
-        return $request;
+    //user search action from database
+    public function search(Request $request)
+    {
+        $users = $this->userInterface->userSearch($request);
+        return $users;
     }
 }

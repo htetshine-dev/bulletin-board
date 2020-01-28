@@ -2,6 +2,10 @@
   <a class="navbar-brand" href="{{ url('/') }}">
     SCM Bulletin Board
   </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
   @guest
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
@@ -15,15 +19,24 @@
   </ul>
   @else
   <ul class="navbar-nav ml-left">
-    <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/user/user-lists') }}">Users</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/user/profile/1') }}">User</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ __('/user/post/post-lists') }}">Posts</a>
-    </li>
+    {{-- if admin --}}
+    @if( Auth::user()->type == 0)
+      <li class="nav-item">
+        <a class="nav-link" href="{{ __('/user/user/user-lists') }}">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ __('/user/user/profile/1') }}">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ __('/user/post/post-lists') }}">Posts</a>
+      </li>
+    {{-- if user --}}
+    @else
+      <li class="nav-item">
+        <a class="nav-link" href="{{ __('/user/post/post-lists') }}">Posts</a>
+      </li>
+    @endif
+
   </ul>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
@@ -41,4 +54,5 @@
     </li>
   </ul>
   @endguest
+  </div>
 </nav>

@@ -5,173 +5,210 @@
 @section('content')
 <div class="container">
   <div class="row marginbottom-60">
-    <div class="col-md-8 offset-2 card bg-light margintop-10">
+    <div class="col-md-8 offset-md-2 card bg-light margintop-10">
+      {{-- form title --}}
       <div class="card-header"><h5>Create User</h5></div>
-      <form method="post">
+      {{-- form body --}}
+      <form method="post" id="confirm" enctype="multipart/form-data">
       @csrf
+      {{-- return message --}}
+      @if(session('status'))
+        <div class="alert alert-success">
+          <strong>{{ session('status') }}</strong>
+        </div>
+      @endif
+      {{-- name input and return error message --}}
       <div class="form-group">
         <div class="row margintop-10">
           <div class="col-md-3">
             <label for="name">Name</label>
           </div>
-          <div class="col-md-8">
-            <input type="name" class="form-control @error('name') is-invalid @enderror"  id="name" name="name" required autocomplete="name" autofocus>
+          <div class="col-md-8 col-11">
+            <input type="text" class="form-control" id="name" name="name" 
+            required autocomplete="name" autofocus>
           </div>
-          <div calss="col-md-1">
+          <div calss="col-md-1 col-1">
             <span class="text-danger">*</span>
           </div>
         </div>
+        @error('name')
+          <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
       </div>
+      {{-- email input and return error message --}}
       <div class="form-group">
         <div class="row">
           <div class="col-md-3">
             <label for="email">Email Address</label>
           </div>
-          <div class="col-md-8">
-            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email" autofocus>
+          <div class="col-md-8 col-11">
+            <input type="email" class="form-control" id="email" name="email"
+            required autocomplete="email" autofocus>
           </div>
-          <div calss="col-md-1">
+          <div calss="col-md-1 col-1">
             <span class="text-danger">*</span>
            </div>
         </div>
+        @error('email')
+          <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
       </div>
+      {{-- password input and return error message --}}
       <div class="form-group">
         <div class="row">
           <div class="col-md-3">
             <label for="password">Password</label>
           </div>
-          <div class="col-md-8">
-            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autofocus>
+          <div class="col-md-8 col-11">
+            <input type="password" class="form-control" id="password" 
+            name="password" required autofocus>
           </div>
-          <div calss="col-md-1">
+          <div calss="col-md-1 col-1">
             <span class="text-danger">*</span>
           </div>
         </div>
+        @error('password')
+          <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
        </div>
+       {{-- confirm password input and return error message --}}
        <div class="form-group">
           <div class="row">
            <div class="col-md-3">
              <label for="password_confirmation">Confirm Password</label>
            </div>
-           <div class="col-md-8">
-             <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required autofocus>
+           <div class="col-md-8 col-11">
+             <input type="password" class="form-control" id="password_confirmation"
+             name="password_confirmation" required autofocus>
            </div>
-           <div calss="col-md-1">
+           <div calss="col-md-1 col-1">
              <span class="text-danger">*</span>
            </div>
           </div>
+          @error('password_confirmation')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
        </div>
+       {{-- type select option and return error message --}}
        <div class="form-group">
           <div class="row">
             <div class="col-md-3">
-              <label for="confirmpassword">Type</label>
+              <label for="type">Type</label>
             </div>
-           <div class="col-md-8">
+           <div class="col-md-8 col-11">
               <select class="form-control" id="type" name="type">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                @for($i=0; $i<=4; $i++)
+                  <option>{{ $i }}</option>
+                @endfor
               </select>
            </div>
-           <div calss="col-md-1">
+           <div calss="col-md-1 col-1">
              <span class="text-danger">*</span>
            </div>
           </div>
+          @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
+        {{-- phone input and return error message --}}
         <div class="form-group">
           <div class="row">
             <div class="col-md-3">
               <label for="phone">Phone</label>
             </div>
-            <div class="col-md-8">
-              <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required autofocus>
+            <div class="col-md-8 col-11">
+              <input type="text" class="form-control" id="phone" 
+              name="phone" required autofocus>
             </div>
-            <div calss="col-md-1"></div>
+            <div calss="col-md-1 col-1"></div>
           </div>
+          @error('phone')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
+        {{-- date of birth input and return error message --}}
         <div class="form-group">
           <div class="row">
             <div class="col-md-3">
               <label for="dateofbirth">Date Of Birth</label>
             </div>
-            <div class="col-md-8">
-              <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"id="dateofbirth" name="dateofbirth" required autofocus>
+            <div class="col-md-8 col-11">
+              <input type="date" class="form-control" id="dateofbirth" 
+              name="dateofbirth" required autofocus>
             </div>
-            <div calss="col-md-1">
+            <div calss="col-md-1 col-1"></div>
           </div>
+          @error('dateofbirth')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
-       </div>
+       {{-- address input and return error message --}}
         <div class="form-group">
           <div class="row">
             <div class="col-md-3">
               <label for="address">Address</label>
             </div>
-            <div class="col-md-8">
-              <textarea class="form-control @error('address') is-invalid @enderror" rows="5" id="address" name="address" required autofocus></textarea>
+            <div class="col-md-8 col-11">
+              <textarea class="form-control" rows="5" id="address" name="address"
+              required autofocus></textarea>
             </div>
-            <div calss="col-md-1"></div>
+            <div calss="col-md-1 col-1"></div>
           </div>
+          @error('address')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
         </div>
-
-       <div class="form-group">
+        {{-- image input and return error message --}}
+        <div class="form-group">
           <div class="row">
             <div class="col-md-3 margintop-10">
               <label for="profile">Profile</label>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-11">
               <div id="msg"></div>                      
                 <input type="file" name="img[]" class="file" accept="image/*">
-                  <div class="input-group my-3">
-                    <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
-                      <div class="input-group-append">
-                        <button type="button" class="browse btn btn-primary">Browse...</button>
-                          <script>
-                            $(document).on("click", ".browse", function() {
-                              var file = $(this).parents().find(".file");
-                              file.trigger("click");
-                            });
-                            $('input[type="file"]').change(function(e) {
-                              var fileName = e.target.files[0].name;
-                              $("#file").val(fileName);
-
-                              var reader = new FileReader();
-                              reader.onload = function(e) {
-                                // get loaded data and render thumbnail.
-                                document.getElementById("preview").src = e.target.result;
-                              };
-                              // read the image file as a data URL.
-                              reader.readAsDataURL(this.files[0]);
-                            });
-                          </script>
-                        </div>
-                      <div class="input-group-append">
-                       <span class="text-danger">*</span>
-                      </div>
-                    </div>  
+                <div class="input-group my-3">
+                  <input type="text" class="form-control" disabled 
+                  placeholder="Upload File" id="file">
+                    <div class="input-group-append">
+                      <button type="button" class="browse btn btn-primary">
+                      Browse...</button>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="text-danger">*</span>
+                    </div>
+                  </div>  
                   </div>
-                  <div class="col-md-8 offset-3">
-                    <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+                  <div class="col-md-8 col-8 offset-3">
+                    <img src="https://placehold.it/80x80" id="preview" 
+                    class="img-thumbnail">
                   </div>
                 <div> 
               </div>
-              <div calss="col-md-1"></div>
-            </div>
+            <div calss="col-md-1 col-1"></div>
           </div>
+          @error('img')
+            <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+        </div>
+        {{-- form footer --}}
         <div class="marginbottom-15">
           <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-2">
+            <div class="col-md-9 col-7"></div>
+            <div class="col-md-2 col-4">
               <div class="row">
-                <div class="col-md-6">
-                  <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#confirmCreateUser" >Confirm</button>
+                <div class="col-md-6 col-6">
+                  <button type="button" class="btn btn-primary float-right" 
+                  data-toggle="modal" data-target="#confirmCreateUser" 
+                  >Confirm</button>
                 </div>
-                <div class="col-md-6">
-                  <button onclick="reset()" class="btn btn-primary float-right">Clear</button>
+                <div class="col-md-6 col-6">
+                  <button onclick="form.reset()" class="btn btn-primary 
+                  float-right">Clear</button>
                 </div>
               </div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1 col-1"></div>
         </div>
       </form>
     </div>
@@ -188,7 +225,7 @@
         <h4 class="modal-title">Confirm Create User</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <form method="post" action="/user/create-user">
+      <form method="post">
       @csrf
       <!-- Modal body -->
       <div class="modal-body">
@@ -200,7 +237,8 @@
                     <label for="name">Name</label>
                   </div>
                   <div class="col-md-8">
-                    <input type="name" class="form-control @error('comment') is-invalid @enderror"  id="name" name="name" required autocomplete="email" autofocus disabled>
+                    <input type="text" class="form-control" id="confirmname" 
+                    disabled>
                   </div>
                   <div calss="col-md-1"></div>
                 </div>
@@ -211,7 +249,8 @@
                     <label for="email">Email Address</label>
                   </div>
                   <div class="col-md-8">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror"  id="email" name="email" required autocomplete="email" autofocus disabled>
+                    <input type="email" class="form-control"  id="confirmemail" 
+                    disabled>
                   </div>
                   <div calss="col-md-1"></div>
                 </div>
@@ -222,7 +261,8 @@
                      <label for="password">Password</label>
                   </div>
                   <div class="col-md-8">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror"  id="password" name="password" required autocomplete="password" autofocus disabled>
+                    <input type="password" class="form-control"  
+                    id="confirmpassword" disabled>
                   </div>
                   <div calss="col-md-1"></div>
                 </div>
@@ -233,7 +273,8 @@
                   <label for="password_confirmation">Confirm Password</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"  id="password_confirmation" name="password_confirmation" required autocomplete="password_confirmation" autofocus disabled>
+                  <input type="password" class="form-control"  id="confirm-password"
+                  disabled>
                 </div>
                 <div calss="col-md-1"></div>
               </div>
@@ -244,11 +285,10 @@
                   <label for="type">Type</label>
                 </div>
                 <div class="col-md-8">
-                  <select class="form-control"  id="type" name="type" disabled>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                  <select class="form-control"  id="confirmtype" disabled>
+                    @for($i=0; $i<=4; $i++)
+                      <option>{{ $i }}</option>
+                    @endfor
                   </select>
                 </div>
                 <div calss="col-md-1"></div>
@@ -260,7 +300,8 @@
                   <label for="phone">Phone</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" class="form-control @error('phone') is-invalid @enderror"  id="phone" name="phone" required autocomplete="phone" autofocus disabled>
+                  <input type="text" class="form-control"  id="confirmphone" 
+                  disabled>
                 </div>
                 <div calss="col-md-1"></div>
               </div>
@@ -271,7 +312,8 @@
                   <label for="dateofbirth">Date Of Birth</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"  id="dateofbirth" name="dateofbirth" required autocomplete="dateofbirth" autofocus disabled>
+                  <input type="date" class="form-control"  id="confirmdob" 
+                  disabled>
                 </div>
                 <div calss="col-md-1"></div>
               </div>
@@ -282,7 +324,8 @@
                   <label for="address">Address</label>
                 </div>
                 <div class="col-md-8">
-                  <textarea class="form-control @error('comment') is-invalid @enderror" rows="5" id="address" name="address" required autocomplete="address" autofocus disabled></textarea>
+                  <textarea class="form-control" rows="5" id="confirmaddress" 
+                  disabled></textarea>
                 </div>
                 <div calss="col-md-1"></div>
               </div>
@@ -290,7 +333,8 @@
           </div>
           <div class="col-md-3">
             <div class="form-group margintop-10">
-              <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail float-right mr-5">
+              <img src="https://placehold.it/80x80" id="confirmpreview" 
+              class="img-thumbnail float-right mr-5">
             </div>
           </div>
         </div>
@@ -298,11 +342,13 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <div class="row">
-          <div class="col-md-6">
-            <button type="submmit" class="btn btn-primary float-right" >Create</button>
+          <div class="col-md-6 col-6">
+            <button type="submit" form="confirm" class="btn btn-primary 
+            float-right">Create</button>
           </div>
-          <div class="col-md-6">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+          <div class="col-md-6 col-6">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Cancle</button>
           </div>
         </div>
       </div>

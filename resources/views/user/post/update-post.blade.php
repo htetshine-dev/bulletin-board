@@ -101,8 +101,10 @@
           <div class="form-group">
             <label for="title">Title:</label>
               <div class="row">
-                <input type="text" class="form-control @error('title') is-invalid @enderror" 
-                id="title" name="title" required  autofocus disabled>
+                <div class="col-md-12">
+                  <input type="text" class="form-control @error('title') is-invalid
+                  @enderror" id="title" name="title" required  autofocus disabled>
+                </div>
               </div> 
           </div>
           {{-- Label, input and required for comment of confirm modal --}}
@@ -110,8 +112,8 @@
             <label for="comment">Comment:</label>
             <div class="row">
               <div class="col-md-12">
-                <textarea class="form-control @error('comment') is-invalid @enderror" 
-                rows="5" id="comment" name="comment" required autofocus 
+                <textarea class="form-control @error('comment') is-invalid 
+                @enderror" rows="5" id="comment" name="comment" required autofocus 
                 disabled></textarea>
               </div>
             </div>   
@@ -124,8 +126,8 @@
               </div>
               <div class="col-md-10">
                 <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="status2" name="status" >
-                  <span class="custom-control-indicator"></span>
+                  <input type="checkbox" class="custom-control-input" id="status2" 
+                  name="status" ><span class="custom-control-indicator"></span>
                 </label>
               </div>
             </div>
@@ -136,11 +138,13 @@
         <div class="row">
           <div class="col-md-6">
             {{-- Button for update confirm --}}
-            <button type="submit" form="confirm" class="btn btn-primary float-right" >Confirm</button>
+            <button type="submit" form="confirm" class="btn btn-primary 
+            float-right">Confirm</button>
           </div>
           <div class="col-md-6">
             {{-- Button for cancle confirm --}}
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Cancle</button>
           </div>
         </div>
       </div>

@@ -4,107 +4,123 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-2 card bg-light margintop-10">
+  <div class="row marginbottom-60">
+    <div class="col-md-8 offset-md-2 card bg-light margintop-10">
+      {{-- title --}}
       <div class="card-header"><h5>User Profile</h5></div>
+      @foreach($users as $user)
       <div class="row">
-          <div class="col-md-9">
-            <div class="form-group">
-              <div class="row margintop-10">
-                <div class="col-md-3">
-                  <label for="name">Name</label>
-                </div>
-                <div class="col-md-8">
-                  <input type="name" class="form-control @error('name') is-invalid @enderror"  id="name" name="name" required autocomplete="name" autofocus disabled>
-                </div>
-                <div calss="col-md-1">
-                  <span class="text-danger">*</span>
-                </div>
+        <div class="col-md-9">
+          {{-- name --}}
+          <div class="form-group">
+            <div class="row margintop-10">
+              <div class="col-md-3">
+                <label for="name">Name</label>
+              </div>
+              <div class="col-md-8 col-11">
+                <input type="name" class="form-control"  id="name" name="name" 
+                required autocomplete="name" autofocus disabled 
+                value="{{ $user->name }}">
+              </div>
+              <div calss="col-md-1 col-1">
+                <span class="text-danger">*</span>
               </div>
             </div>
+            </div>
+            {{-- email --}}
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="email">Email Address</label>
                 </div>
-                <div class="col-md-8">
-                  <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autocomplete="email" autofocus disabled>
+                <div class="col-md-8 col-11">
+                  <input type="email" class="form-control" id="email" name="email" 
+                  required autocomplete="email" autofocus disabled 
+                  value="{{ $user->email }}">
                 </div>
-                <div calss="col-md-1">
+                <div calss="col-md-1 col-1">
                   <span class="text-danger">*</span>
                 </div>
               </div>
-            </div>            
+            </div> 
+            {{-- type --}}
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="confirmpassword">Type</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 col-11">
                   <select class="form-control" id="type" name="type" disabled>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    <option>{{ $user->type }}</option>
                   </select>
                 </div>
-                <div calss="col-md-1">
+                <div calss="col-md-1 col-1">
                   <span class="text-danger">*</span>
                 </div>
               </div>
             </div>
+            {{-- phone --}}
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="phone">Phone</label>
                 </div>
-                <div class="col-md-8">
-                  <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required autofocus disabled>
+                <div class="col-md-8 col-11">
+                  <input type="text" class="form-control" id="phone" name="phone"
+                  required autofocus disabled value="{{ $user->phone}}">
                 </div>
-                <div calss="col-md-1"></div>
+                <div calss="col-md-1 col-1"></div>
               </div>
             </div>
+            {{-- date of birth --}}
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="dateofbirth">Date Of Birth</label>
                 </div>
-                <div class="col-md-8">
-                  <input type="date" class="form-control @error('dateofbirth') is-invalid @enderror"id="dateofbirth" name="dateofbirth" required autofocus disabled>
+                <div class="col-md-8 col-11">
+                  <input type="date" class="form-control" id="dateofbirth"
+                  name="dateofbirth" required autofocus disabled 
+                  value="{{ $user->date_of_birth}}">
                 </div>
-                <div calss="col-md-1"> </div>
+                <div calss="col-md-1 col-1"> </div>
               </div>
             </div>
+            {{-- address --}}
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3">
                   <label for="address">Address</label>
                 </div>
-                <div class="col-md-8">
-                  <textarea class="form-control @error('address') is-invalid @enderror" rows="5" id="address" name="address" required autofocus disabled></textarea>
+                <div class="col-md-8 col-11">
+                  <textarea class="form-control" rows="5" id="address" 
+                  name="address" required autofocus 
+                  disabled>{{ $user->address }}</textarea>
                 </div>
-                <div calss="col-md-1"></div>
+                <div calss="col-md-1 col-1"></div>
               </div>
-            </div>              
-            <div class="row marginbottom-15">
-              <div class="col-md-8"></div>
-                <div class="col-md-3">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <a href="{{ __('/user/user/update-user/1') }}"><button class="btn btn-primary float-right">Edit</button></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-1"></div>
-              </div> 
             </div>
-          <div class="col-md-3">
+          </div>
+          {{-- image  --}}
+          <div class="col-md-3 col-11">
             <div class="form-group margintop-10">
-              <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail float-right mr-5">
+            <img src="{{ '/uploads/images/users/'.$user->id .'/'.
+            $user->profile_photo }}" id="preview" class="img-thumbnail 
+            float-right">
             </div>
           </div>
         </div>
-    </div>
+        {{-- edit button --}}
+        <div class="row marginbottom-15 margintop-10">
+          <div class="col-md-8">
+            <a href="{{ __('/user/user/update-user/').$user->id}}">
+              <button class="btn btn-primary float-right">Edit</button>
+            </a>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+        @endforeach
+    </div>  
   </div>
 </div>
 </div>

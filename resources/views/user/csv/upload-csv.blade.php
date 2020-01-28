@@ -8,18 +8,20 @@
       <div class="col-md-6 offset-3 card bg-light margintop-100">
         <div class="card-header"><h5>Upload Csv</h5></div>
           <div class=" card-body">
-            <form method="post">
+            @if(session('status'))
+              <div class="alert alert-success">
+                <strong>{{ session('status') }}</strong>
+              </div>
+            @endif
+            <form method="post" action="{{ __('/user/csv/upload-csv') }}" enctype="multipart/form-data">
             @csrf
               <div class="custom-file margintop-50">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
+                <input type="file" class="custom-file-input" id="csvFile" name="csvFile">
+                <label class="custom-file-label" for="csvFile">Choose file</label>
               </div>
-              <script>
-                $(".custom-file-input").on("change", function() {
-                  var fileName = $(this).val().split("\\").pop();
-                  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                });
-              </script>
+              @error('csvFile')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
               <div class="row margintop-50">
                 <div class="col-md-6">
                   <div class="form-group form-check"></div>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\User\Csv;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Csv\CsvUploadRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Post;
 
 class CsvController extends Controller
 {
@@ -33,9 +36,45 @@ class CsvController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CsvUploadRequest $request)
     {
-        return $request;
+        if($file = $request->file('csvFile')) {
+            $name = time().time().'.'.$file->getClientOriginalExtension();
+            $target_path = public_path('/uploads/csv/');
+            $path = $request->file('csvFile')->getRealPath();
+            $posts = array_map('str_getcsv', file($path));
+            $mytitle = Post::get('title');
+            $mytitle = json_decode(json_encode($mytitle), true);
+            
+            foreach($posts as $post){
+                $title = $post[0];
+                $checkTitle = array("title"=>$title);
+                if(in_array($checkTitle, $mytitle)){
+                    return back()->with('status', $title.' title is already taken. You can not upload your csv file.');
+                }else{
+                    $comment = $post[1];
+                    if($post[2] != 1){
+                        $status = 0;
+                    }else{
+                        $status = $post[2];
+                    }
+                    $createdUserId = Auth::user()->id;
+                    $currentDate = date('Y-m-d H:i:s');
+                    Post::insert([
+                        'title'=>$title,
+                        'description'=>$comment,
+                        'status'=>$status,
+                        'created_user_id'=>$createdUserId,
+                        'updated_user_id'=>$createdUserId,
+                        'created_at'=>$currentDate,
+                        'updated_at'=>$currentDate
+                    ]);
+                }
+            }
+            if($file->move($target_path, $name)) { 
+                return redirect('user/csv/upload-csv')->with('status','A Csv file is uploaded successfully');
+            }
+        }
     }
 
     /**

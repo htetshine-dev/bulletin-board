@@ -8,11 +8,23 @@ use App\Http\Requests\Post\PostRequest;
 use App\Http\Requests\Post\PostUpdateRequest;
 use App\Http\Requests\Post\SearchPostRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Post;
-use App\User;
+use App\Models\Post;
+use App\Contracts\Services\User\UserServiceInterface;
 
 class PostController extends Controller
 {
+    private $userInterface;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(UserServiceInterface $userInterface)
+    {
+  
+      $this->middleware('auth');
+      $this->userInterface = $userInterface;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +32,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->where('deleted_at',null)->paginate(10);
-        return view('user.post.post-lists', compact('posts'));
+        $posts = $this->userInterface->getPostList();
+        return $posts;
     }
 
     /**
@@ -31,7 +43,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('user.post.create-post');
+        $posts = $this->userInterface->postCreateView();
+        return $posts;
     }
 
     /**
@@ -44,22 +57,8 @@ class PostController extends Controller
     
     public function store(PostRequest $request)
     {
-        $title = $request->get('title');
-        $comment = $request->get('comment');
-        $createdUserId = Auth::user()->id;
-        $currentDate = date('Y-m-d H:i:s');
-        $dbtitle = Post::get('title');
-        
-        Post::insert([
-            'title'=>$title, 
-            'description'=>$comment, 
-            'created_user_id'=>$createdUserId,
-            'updated_user_id'=>$createdUserId,
-            'created_at'=>$currentDate,
-            'updated_at'=>$currentDate
-            ]);
-        define('SUCCESS',' is created successfully.');
-        return redirect('/user/post/create-post')->with('status', $title.SUCCESS);
+        $posts = $this->userInterface->postStore($request);
+        return $posts;
     }
 
     /**
@@ -70,8 +69,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $posts= Post::where('id',$id)->get();
-        return view('user.post.post-lists', compact('posts'));
+        $posts = $this->userInterface->postShow($id);
+        return $posts;
+        
     }
 
     /**
@@ -82,8 +82,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $posts = Post::where('id', $id)->get();
-        return view('user.post.update-post', compact('posts'));
+        $posts = $this->userInterface->postEdit($id);
+        return $posts;
     }
 
     /**
@@ -95,25 +95,8 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, $id)
     {
-        $title = $request->get('title');
-        $comment = $request->get('comment');
-        $status = $request->get('status');
-        if($status=='on'){
-            $status=1;
-        }else{
-            $status=2;
-        }
-        $updatedUserId = Auth::user()->id;
-        $currentDate = date('Y-m-d H:i:s');
-        Post::where('id', $id)->update([
-            'title'=>$title,
-            'description'=>$comment,
-            'status'=>$status,
-            'updated_user_id'=>$updatedUserId,
-            'updated_at'=>$currentDate
-        ]);
-        define('SUCCESS',' is updated successfully.');
-        return redirect('/user/post/update-post/'.$id)->with('status', $title.SUCCESS);
+        $posts = $this->userInterface->postUpdate($request, $id);
+        return $posts;
     }
 
     /**
@@ -122,20 +105,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        // $deletedUser = Auth::user()->id;
-        // Post::find($id)->delete(['deleted_user_id'=>$deletedUser]);
-        // return redirect('/user/post/post-lists/')->with('status', 'A post is deleted successfully.');
-        return $request;
+        $posts = $this->userInterface->postDelete($id);
+        return $posts;
     }
 
     public function search(SearchPostRequest $request){
-        $title = $request->get('title');
-        $posts = Post::where('title', 'like', '%'.$title.'%')
-        ->where('deleted_at',null)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-        return view('user.post.post-lists', compact('posts'));
+        $posts = $this->userInterface->postSearch($request);
+        return $posts;
     }
 }

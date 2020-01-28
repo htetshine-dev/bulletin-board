@@ -80,7 +80,8 @@
                     {{-- Link For View Modal Box --}}
                     {{-- <form method="post" action="" id="view"> --}}
                     <a href="{{ __('/user/post/update-post/') }}{{ $post->id }}" 
-                      data-toggle="modal" data-target="#viewModal">
+                      data-toggle="modal" data-target="#viewModal" 
+                      onclick="showDetail({{$post}})">
                     {{ $post->title }}</a>
                     {{-- </form> --}}
                   </td>
@@ -95,9 +96,9 @@
                   Edit</a></td>
                   {{-- Column for Delete Post --}}
                   <td>
-                    {{ $post->id }}
                     <button type="button" class="btn btn-primary float-right" 
-                    data-toggle="modal" data-target="#confirmDeletePost" data-postid="{{ $post->id }}">
+                    data-toggle="modal" data-target="#confirmDeletePost" 
+                    onclick="confirmDelete({{$post->id}})">
                     Delete</button>
                   
                   </td>
@@ -106,14 +107,16 @@
             {{-- if the number of post is null --}}  
             @else
               <tr>
-                <td class="text-center" colspan="6"> There is no posts</td>
+                <td class="text-center alert alert-danger" colspan="6">
+                   There is no post of search result.
+                </td>
               </tr>
             @endif  
           </tbody>
         </table>
         </div>
           {{-- Pagination for list and search of posts --}}
-          <ul class="pagination  justify-content-center">
+          <ul class="pagination  justify-content-center marginbottom-15">
             {{ $posts->links() }}
           </ul>
         </div>
@@ -135,17 +138,14 @@ aria-hidden="true">
       </div>
       {{-- Modal Body --}}
       <div class="modal-body">
-        @foreach($posts as $post)
-        <form mehtod="post" 
-        action="{{ __('/user/post/delete-post/') }}{{ $post->id }}" id="confirm">
+        <form mehtod="post"  id="confirm">
         {{method_field('delete')}}
         @csrf
         {{-- <a href="#" data-toggle="modal" 
         data-target="#confirmDeletePost">Delete</a></td> --}}
-        <input type="hidden" name="postid" id="postid" value="{{ $post->id }}">
         </form>
         <center>
-          Are you sure you want to delete? {{ $post->id }}
+          Are you sure you want to delete? 
         </center>
       </div>
       {{-- Modal Footer --}}
@@ -179,8 +179,8 @@ aria-hidden="true">
           <label for="title">Title:</label>
           <div class="row">
             <div class="col-md-12">
-              <input type="text" class="form-control" value="" id="title" name="title" 
-              required disabled>
+              <input type="text" class="form-control" value="" id="title" 
+              name="title" required disabled>
             </div>
           </div>
         </div>

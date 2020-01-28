@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
@@ -15,48 +15,6 @@
     @include('layouts.nav')
     @yield('content')
     @include('layouts.footer')
-  
-  <script>
-    $('#confirmCreatePost').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-      var title = document.getElementById('title').value
-      var comment = document.getElementById('comment').value
-      $('input:text:eq(1)').val(title)
-      $('textarea:eq(1)').val(comment)
-    })
-
-    $('#confirmUpdatePost').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-      var title = document.getElementById('title').value
-      var comment = document.getElementById('comment').value
-      var status = $('#status').is(":checked")
-      $('input:text:eq(1)').val(title)
-      $('textarea:eq(1)').val(comment)
-      $('input:checkbox').attr('checked', status)
-    })
-    function excelDownload(){
-      var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#tableWrap').html())
-      location.href = url
-      return false
-    }
-    $('#viewModal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-      var title = document.getElementById('title').value
-      var comment = document.getElementById('comment').value
-      
-      var x = document.getElementById("myTable").rows[1].cells;
-       x[0].innerHTML = title;
-      $('input:text:eq(1)').val(title)
-      $('textarea').val(comment)
-    })
-
-    // $('#confirmDeletePost').on('shown.bs.modal', function (event) {
-    //   $('#myInput').trigger('focus')
-    //   var postid = document.getElementById('postid').value;
-    //   console.log(postid);
-    //   //modal.find('mody-body #postid')val(postid);
-    // })
-    
-  </script>
+    <script src="{{ asset('js/common.js') }}"></script>
 </body>
 </html>
