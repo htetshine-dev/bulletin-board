@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\User\User;
+namespace App\Http\Controllers\User\Post;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\User\UserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
-use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\Post\PostRequest;
+use App\Http\Requests\Post\PostUpdateRequest;
+use App\Http\Requests\Post\SearchPostRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Post;
 use App\Contracts\Services\User\UserServiceInterface;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     private $userInterface;
     /**
@@ -32,10 +32,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        
-        $users = $this->userInterface->getUserList();
-        return $users;    
+        $posts = $this->userInterface->getPostList();
+        return $posts;
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,20 +43,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = $this->userInterface->userCreateView();
-        return $users;
+        $posts = $this->userInterface->postCreateView();
+        return $posts;
     }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+
+    
+    public function store(PostRequest $request)
     {
-        $createUser = $this->userInterface->userStore($request);
-        return $createUser;        
+        $posts = $this->userInterface->postStore($request);
+        return $posts;
     }
+
     /**
      * Display the specified resource.
      *
@@ -65,9 +69,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $users = $this->userInterface->userShow($id);
-        return $users;
+        $posts = $this->userInterface->postShow($id);
+        return $posts;
+        
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -76,9 +82,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = $this->userInterface->userEdit($id);
-        return $users;
+        $posts = $this->userInterface->postEdit($id);
+        return $posts;
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -86,11 +93,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
-        $users = $this->userInterface->userUpdate($request, $id);
-        return $users;
+        $posts = $this->userInterface->postUpdate($request, $id);
+        return $posts;
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -99,25 +107,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $users = $this->userInterface->userDelete($id);
-        return $users;
+        $posts = $this->userInterface->postDelete($id);
+        return $posts;
     }
-    //change password view
-    public function changePassword($id)
-    {
-        $users = $this->userInterface->userChangePassword($id);
-        return $users;
-    }
-    //cahnge password action
-    public function saveNewPassword(ChangePasswordRequest $request, $id)
-    {
-        $users = $this->userInterface->userSaveNewPassword($request, $id);
-        return $users;
-    }
-    //user search action from database
-    public function search(Request $request)
-    {
-        $users = $this->userInterface->userSearch($request);
-        return $users;
+
+    public function search(SearchPostRequest $request){
+        $posts = $this->userInterface->postSearch($request);
+        return $posts;
     }
 }
